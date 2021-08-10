@@ -63,6 +63,10 @@ absl::optional<CelValue> extractSslInfo(const Ssl::ConnectionInfo& ssl_info,
     if (!ssl_info.dnsSansPeerCertificate().empty()) {
       return CelValue::CreateString(&ssl_info.dnsSansPeerCertificate()[0]);
     }
+  } else if (value == SerialNumberPeerCertificate) {
+    if (!ssl_info.serialNumberPeerCertificate().empty()) {
+      return CelValue::CreateString(&ssl_info.serialNumberPeerCertificate());
+    }
   }
   return {};
 }
